@@ -8,13 +8,13 @@ In this paper, we develop Eyettention, the first dual-sequence model that simult
 Clone repository:
 
 ```
-git clone git@github.com:aeye-labs/Eyettention
+git clone git@github.com:aeye-lab/Eyettention
 ```
 
 or
 
 ```
-git clone https://github.com/aeye-labs/Eyettention
+git clone https://github.com/aeye-lab/Eyettention
 ```
 and change to the cloned repo via `cd Eyettention`.
 
