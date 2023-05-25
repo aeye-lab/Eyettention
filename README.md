@@ -24,6 +24,11 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+## Dataset
+For CELER dataset, you need to follow the instructions 
+https://github.com/berzak/celer
+In order to run the experiments, place the downloaded CELER dataset in the /Data/ folder.
+
 ## Run Experiments
 #For Chinese BSC dataset:
 ```
