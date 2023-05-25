@@ -270,8 +270,7 @@ if __name__ == '__main__':
 
 			if np.mean(val_loss) < old_score:
 				# save model if val loss is smallest
-				torch.save(dnn.state_dict(), '{}/CELoss_CELER_{}_eyettention_{}_newloss_fold{}.pth'.format(args.save_data_folder, args.test_mode, args.atten_typ, fold_indx))
-				#torch.save({'optimizer':optimizer.state_dict()},'{}/CELoss_seq2seq_optstate_fold{}_class_balance.pth'.format(cf["data_fold"], fold_indx))
+				torch.save(dnn.state_dict(), '{}/CELoss_CELER_NRS_eyettention_{}_newloss_fold{}.pth'.format(args.save_data_folder, args.atten_type, fold_indx))
 				old_score= np.mean(val_loss)
 				print('\nsaved model state dict\n')
 				save_ep_couter = episode_i
@@ -283,7 +282,7 @@ if __name__ == '__main__':
 		#evaluation
 		dnn.eval()
 		res_llh=[]
-		dnn.load_state_dict(torch.load(os.path.join(args.save_data_folder,f'CELoss_CELER_{args.test_mode}_eyettention_{args.atten_type}_newloss_fold{fold_indx}.pth'), map_location='cpu'))
+		dnn.load_state_dict(torch.load(os.path.join(args.save_data_folder,f'CELoss_CELER_NRS_eyettention_{args.atten_type}_newloss_fold{fold_indx}.pth'), map_location='cpu'))
 		dnn.to(device)
 		batch_indx = 0
 		for batchh in test_dataloaderr:
@@ -363,12 +362,12 @@ if __name__ == '__main__':
 		loss_dict['sn_word_len_std'] = sn_word_len_std
 		print('\nTest likelihood is {} \n'.format(np.mean(res_llh)))
 		#save results
-		with open('{}/res_CELER_{}_eyettention_{}_Fold{}.pickle'.format(args.save_data_folder, args.test_mode, args.atten_type, fold_indx), 'wb') as handle:
+		with open('{}/res_CELER_NRS_eyettention_{}_Fold{}.pickle'.format(args.save_data_folder, args.atten_type, fold_indx), 'wb') as handle:
 			pickle.dump(loss_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 		fold_indx += 1
 
 	if bool(args.scanpath_gen_flag) == True:
 		#save results
 		dic = {"sp_dnn": sp_dnn_list, "sp_human": sp_human_list}
-		with open(os.path.join(args.save_data_folder, f'CELER_scanpath_generation_eyettention_{args.test_mode}_{args.atten_type}.pickle'), 'wb') as handle:
+		with open(os.path.join(args.save_data_folder, f'CELER_scanpath_generation_eyettention_NRS_{args.atten_type}.pickle'), 'wb') as handle:
 			pickle.dump(dic, handle, protocol=pickle.HIGHEST_PROTOCOL)
